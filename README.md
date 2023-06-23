@@ -7,8 +7,5 @@
    * 串接Kakfa，爬取的資訊寫至producer，再透過consumer將資料導入postgres db
 # 二、基本目標流程圖:
 ![link](https://github.com/jack110114201/foodpanda_webscrap/blob/6afd0d1cb0afbc36e153665e94657c638801ec73/upload_image/%E5%9F%BA%E6%9C%AC%E7%9B%AE%E6%A8%99_%E6%B5%81%E7%A8%8B%E5%9C%96.jpg)
-
-
-
-
 # 三、進階目標流程圖:
+![link](https://github.com/jack110114201/foodpanda_webscrap/blob/4a53e28adb6391cb77f92fd8b05007179fed9655/upload_image/%E9%80%B2%E9%9A%8E%E7%9B%AE%E6%A8%99_%E6%B5%81%E7%A8%8B%E5%9C%96.drawio.png)
