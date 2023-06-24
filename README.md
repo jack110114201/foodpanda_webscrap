@@ -16,7 +16,45 @@
 2|main_foodpanda_scrapper_detail_vr_csv.py|1.讀取餐廳url網址資訊csv檔<br>2.依據檔案中的url網址爬取餐廳資訊(餐廳地址資訊,餐廳營業時間,餐廳完整特徵資訊,餐廳餐點資訊)<br>3.將收集到的資訊儲存成csv，放置/data目錄
 3|main_create_table.py|1.依據/script目錄下的.sql，在postgres db建立7張table
 4|main_insert_data.py|1.依據/data目錄下的csv，導入postgres db table
-# 五、進階_主要程式說明
+# 五、基本主要程式開發流程、遇到的問題&解決措施
+1. 流程:
+   * 透過undected-selenium的方式進入Foodpanda 地點位於台北市的頁面: https://www.foodpanda.com.tw/en/city/taipei-city
+   * 在搜尋餐廳資訊前，需要定義好地區範圍。實作是輸入”信義區忠孝東路”
+   * 進入選擇餐廳的網頁，開始爬取需要的資訊
+   * 將爬取到的資訊儲存至csv檔案
+     - 餐廳基本資訊
+     - 餐廳url網址資訊
+     - 餐廳特徵資訊
+   * 讀取餐廳url網址資訊的csv檔案，使用儲存的url資訊，另透過undetected-chromedriver的方式，進入餐廳的點餐頁面進行爬取資訊
+   * 將爬取到的資訊儲存至csv檔案
+     - 餐廳地址資訊
+     - 餐廳營業時間
+     - 餐廳完整特徵資訊
+     - 餐廳餐點資訊
+   * 爬取的資訊都存成csv檔案後，再把資訊導入Postgres db
+     - pdata.shop_profile
+     - pdata.shop_url
+     - pdata.shop_feature
+     - pdata.shop_adr
+     - pdata.shop_time
+     - pdata.shop_feature_detail
+     - pdata.shop_product_detail
+2. 遇到的問題&解決措施:
+   * 餐廳的網頁屬於動態生成的頁面，最一開始透過指令直接移動到頁面最底部，預期會觸動動態生成的機制，但不會觸動:
+     - 措施: 透過window.scrollBy的方式，慢慢滑動頁面
+   * 透過window.scrollBy的方式，有時候頁面還沒加載完成，就繼續滑動頁面，導致頁面又跑到頁面的最底部:
+     - 措施: 除了延遲向下滑動頁面外，也有做向上滑動頁面的動作
+   * 餐廳數量很多，不知道要爬到何年何月:
+     - 措施: 訂定停止點，當爬到目前尚不接受點餐(Closed for now)的資訊，就停止爬取資訊
+   * 原本是透過chromedriver的方式去爬取資訊，但在進行爬取點餐頁面資訊時，高機率遇到機器人機制的情況。曾嘗試延遲爬取資訊的間隔時間、停留在頁面上久一點、進入餐廳點餐頁面前，先進入其他的網頁..等方式，皆無法解決:
+     - 措施: 改使用undtected-chromedriver的方式
+   * 改使用undtected-chromedriver的方式，偶爾還是會遇到下列情況，尚待改善:
+     - 連續啟動爬蟲程式，還是可能會遇到機器人機制，但手動通過驗證後，程式可繼續執行
+     - 有遇過完全無法連進Foodpanda網站，或者雖然出現機器人機制，但不給我手動驗證的情況
+   * undtected-chromedriver需要使用的chrome版本與local版本不一致，更新chrome版本方式:
+     - sudo apt-get update
+     - sudo apt-get --only-upgrade install google-chrome-stable
+# 六、進階_主要程式說明
 - 替換基本主要程式序號2、4
 
 序號|程式名稱|功能敘述
