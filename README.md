@@ -63,6 +63,7 @@
 2|main_insert_data_kafka_consumer.py|1.透過kafka consumer將接收到的資訊，寫至/kafka_consumer_data/consumer_log_yyyymmdd.json<br>2.寫完log資訊後，再將資訊導入postgres db table
 # 七、進階主要程式開發過程:
 1. 過程:
+   * 手動建立Kafka topic
    * 將基礎目標程式(main_foodpanda_scrapper_detail_vr_csv.py)調整成將爬取的資訊傳送至kafka producer的版本
    * 將基礎目標程式(main_insert_data.py)調整成透過kafka consumer接收資訊，取代讀取csv檔的版本
      - 僅規劃接收餐廳地址資訊,餐廳營業時間,餐廳完整特徵資訊,餐廳餐點資訊
