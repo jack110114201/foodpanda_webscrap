@@ -73,7 +73,7 @@ class KafkaConsumer:
                 data['partition'] = partition
                 data['offset'] = offset
                 data['msg_key'] = msg_key
-                data['data_recvdatetime'] = datetime.datetime.now().strftime('%Y-%m-%d- %H:%M:%S')
+                data['data_recvdatetime'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
                 # 秀出 metadata
                 data_str = json.dumps(data,ensure_ascii=False)
