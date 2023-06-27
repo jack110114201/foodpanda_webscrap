@@ -48,6 +48,7 @@
      - 措施: 訂定停止點，當爬到目前尚不接受點餐(Closed for now)的資訊，就停止爬取資訊
    * 原本是透過chromedriver的方式去爬取資訊，但在進行爬取點餐頁面資訊時，高機率遇到機器人機制的情況。曾嘗試延遲爬取資訊的間隔時間、停留在頁面上久一點、進入餐廳點餐頁面前，先進入其他的網頁..等方式，皆無法解決:
      - 措施: 改使用undtected-chromedriver的方式
+     - 參考網址: https://www.zenrows.com/blog/selenium-avoid-bot-detection#how-anti-bots-work
    * 改使用undtected-chromedriver的方式，偶爾還是會遇到下列情況，尚待改善:
      - 連續啟動爬蟲程式，還是可能會遇到機器人機制，但手動通過驗證後，程式可繼續執行
      - 有遇過完全無法連進Foodpanda網站，或者雖然出現機器人機制，但不給我手動驗證的情況
